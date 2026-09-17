@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   AlertCircle, ArrowRight, CheckCircle2, ChevronDown, ClipboardCheck,
@@ -151,8 +151,15 @@ export default function App() {
             <div className="assessment-head"><div className="assessment-title"><ShieldCheck size={17}/> AI Copilot Risk Assessment</div><span className="suggested-label">SUGGESTED — REVIEW REQUIRED</span></div>
             <div className="assessment-grid">
               <div><span className="mini-label">Severity</span><SeverityPill value={data.severity}/></div>
-              <div><span className="mini-label">Suggested next action</span><div className="assessment-value">{data.suggested_action || "Awaiting analysis..."}</div></div>
-            </div>
+<div>
+  <span className="mini-label">Suggested next action</span>
+  <input
+    className="assessment-value"
+    value={data.suggested_action || ""}
+    placeholder="Awaiting analysis..."
+    onChange={e => change("suggested_action", e.target.value)}
+  />
+</div>            </div>
             <div className="risk-copy"><span className="mini-label">Initial risk assessment</span><p>{data.risk_assessment || "AI-generated risk reasoning will appear here after complaint analysis."}</p></div>
           </div>
 
